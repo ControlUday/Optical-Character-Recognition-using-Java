@@ -1,0 +1,44 @@
+package project;
+
+import java.io.File;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+
+import net.sourceforge.tess4j.util.ImageHelper;
+import net.sourceforge.tess4j.util.ImageIOHelper;
+import net.sourceforge.tess4j.util.LoggHelper;
+import net.sourceforge.tess4j.util.Utils;
+
+import net.sourceforge.tess4j.ITesseract.RenderedFormat;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.ITessAPI.TessPageIteratorLevel;
+
+import static org.junit.Assert.*;
+
+import com.recognition.software.jdeskew.ImageDeskew;
+
+public class project {
+    private final static String datapath = ".";
+    private final static String testResourcesDataPath = "test/resources/test-data";
+	public static void main(String[] args) {
+		try {
+			Tesseract instance = new Tesseract();
+	        instance.setDatapath(new File(datapath).getPath());
+		    File imageFile = new File(testResourcesDataPath, "OCR.png");
+	        String result = instance.doOCR(imageFile);
+	        System.out.println(result);
+		} catch (TesseractException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
